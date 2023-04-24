@@ -9,44 +9,66 @@
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    
   </head>
 
   <body>
+
+    <style>
+      .row-1{
+        background-color: bisque;
+        height: 200px;
+        width: 45%;
+        float: left;
+        box-sizing: border-box;
+      }
+
+      .row-2{
+        background-color: rgb(174, 174, 204);
+        height: 200px;
+      }
+    </style>
     <main>
         <h1>Peronsal Weather Dashboard</h1>  
 
         <!-- Section for the main container -->
-<div class="container-main-container">
+<div class="container-main-fluid">
     
-    <div class = "row"></div>
-        <div class="col-12 col-md-3 col-xl-3 colOne">
+    <div class = "row-1">
+        <div class="col-md-6">Col One</div>
+        <div class="col-md-6">Col three</div>
             <h2> Search for a City in the USA:</h2>
                 <input type="text" class="control textVal" placeholder="Type a city...."></input>
         
                     <div class="input-group-append btnPar"> click
         <button class="btn-serach" type="button" id="button-addon2"><i class="fa-search"></i></button>
         </div> 
-        
+        </div>
+    </div>
 <!-- Section to place city seraches that have been placed-->
         <div class="container of city search"></div>
 
-    
-<div class="colom two area"></div>
 
-    <div class="main box" style ="max-width: 425px;">
-    <h2 class="box-header boxCityName">City name:</h2>
-    <h3 class="box-header boxTodayDate">Date:</h3>
-    <img class="icons"></img>
-       <div class="box-body box-bodyToday">Wind Speed:</div>
+        
+<div class="row-2">
+      <div class="col-6 col-md-9 col-xl-9 colTwo">Col two</div>
+          <!-- <div class="main box" style ="max-width: 425px;"> -->
+          <h2 class="box-header boxCityName">City name:</h2>
+              <h3 class="box-header boxTodayDate">Date:</h3>
+                <img class="icons"></img>
+                    <div class="box-body box-bodyToday">Wind Speed:</div>
     
-    
+    </div>
 </div>
+</div>
+
 <br>
     <div class="fiveDayForcast">Five day forcast</div>
 
 
     </main>
 	<script src="script.js."></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   </body>
 </html>
