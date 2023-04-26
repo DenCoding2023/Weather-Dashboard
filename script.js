@@ -19,3 +19,6 @@ function searchWeather(){
 
 
 document.querySelector("#button-addon2").addEventListener("click", searchWeather)
+
+var searchCities = document.querySelector("#cities-Searched");
+var dataStore= json.parse(localStorage.getItem("cities")) ||{};
