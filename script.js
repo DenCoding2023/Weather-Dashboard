@@ -5,15 +5,16 @@ function searchWeather(){
 
     var city = document.querySelector(".textVal").value
 
-    var searchHistory =[]
+    var searchHistory =[];
     searchHistory.push(city);
-    console.log(searchHistory)
+    console.log(searchHistory);
     localStorage.setItem('search-history', JSON.stringify(searchHistory))
     
 
 //    var city was here I moved it to the top to test///
     var ApiKey = "7bdab0cf3daa341b1d431ecfe8584de8"
     fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+ApiKey+"&units=imperial")
+    // fetch("https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={Apikey}")
     .then(res=>res.json())
     .then(data=>{
         let weatherIcon= document.querySelector(".icons");
@@ -79,6 +80,41 @@ var displayCities = function(){
         }
 };
 
+// testing to see if I can add a card//
+
+const item = {
+    name: 'Product 1',
+    price: 10.99,
+    quantity: 1
+
+};
+console.log(item);
+
+  const key = 'cartItem1';
+  localStorage.setItem(key, JSON.stringify(item));
+
+  const cartList = document.querySelector('.cart-list');
+
+const itemString = localStorage.getItem(key);
+const itemObj = JSON.parse(itemString);
+
+const cartItem = document.createElement('div');
+cartItem.classList.add('cart-item');
+cartItem.innerHTML = `
+  <h3>${itemObj.name}</h3>
+  <p>Price: $${itemObj.price}</p>
+  <p>Quantity: ${itemObj.quantity}</p>
+`;
+
+cartList.appendChild(cartItem);
+
+const itemString = localStorage.getItem(key);
+const itemObj = JSON.parse(itemString);
+
+// Update the quantity
+itemObj.quantity += 1;
+
+localStorage.setItem(key, JSON.stringify(itemObj));
 
 
 
