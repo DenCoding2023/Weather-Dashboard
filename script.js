@@ -50,12 +50,16 @@ function start(){
 loadCity();
 }
 
+var storedHistory = localStorage.getItem('search-history');
 //Array of Objects for localStores data
 var dataStore = JSON.parse(localStorage.getItem('search-history')) || [];
+console.log(dataStore)
 
 var displayCities = function(){
     let citySearchContainer= document.querySelector("#city-search");
- 
+ citySearchContainer.innerHTML=storedHistory
+
+
     // cleaningElement(containerHistoricCities);
 
     if(dataStore){
@@ -88,33 +92,34 @@ const item = {
     quantity: 1
 
 };
-console.log(item);
 
-  const key = 'cartItem1';
-  localStorage.setItem(key, JSON.stringify(item));
+// console.log(item);
 
-  const cartList = document.querySelector('.cart-list');
+//   const key = 'cartItem1';
+//   localStorage.setItem(key, JSON.stringify(item));
 
-const itemString = localStorage.getItem(key);
-const itemObj = JSON.parse(itemString);
+//   const cartList = document.querySelector('.cart-list');
 
-const cartItem = document.createElement('div');
-cartItem.classList.add('cart-item');
-cartItem.innerHTML = `
-  <h3>${itemObj.name}</h3>
-  <p>Price: $${itemObj.price}</p>
-  <p>Quantity: ${itemObj.quantity}</p>
-`;
+// const itemString = localStorage.getItem(key);
+// const itemObj = JSON.parse(itemString);
 
-cartList.appendChild(cartItem);
+// const cartItem = document.createElement('div');
+// cartItem.classList.add('cart-item');
+// cartItem.innerHTML = `
+//   <h3>${itemObj.name}</h3>
+//   <p>Price: $${itemObj.price}</p>
+//   <p>Quantity: ${itemObj.quantity}</p>
+// `;
 
-const itemString = localStorage.getItem(key);
-const itemObj = JSON.parse(itemString);
+// cartList.appendChild(cartItem);
 
-// Update the quantity
-itemObj.quantity += 1;
+// const itemString = localStorage.getItem(key);
+// const itemObj = JSON.parse(itemString);
 
-localStorage.setItem(key, JSON.stringify(itemObj));
+// // Update the quantity
+// itemObj.quantity += 1;
+
+// localStorage.setItem(key, JSON.stringify(itemObj));
 
 
 
