@@ -45,19 +45,22 @@ var myValue = localStorage.getItem("city");
 localStorage.setItem(".city", myValue);
 
 
+
 function start(){
 
 loadCity();
 }
-
-var storedHistory = localStorage.getItem('search-history');
+// Variable provided by abs to help log//
+// var storedHistory = localStorage.getItem('search-history');
 //Array of Objects for localStores data
-var dataStore = JSON.parse(localStorage.getItem('search-history')) || [];
-console.log(dataStore)
+
 
 var displayCities = function(){
+    var dataStore = JSON.parse(localStorage.getItem('search-history')) || [];
+    console.log(dataStore)
+
     let citySearchContainer= document.querySelector("#city-search");
- citySearchContainer.innerHTML=storedHistory
+//  citySearchContainer.innerHTML=storedHistory
 
 
     // cleaningElement(containerHistoricCities);
@@ -73,16 +76,31 @@ var displayCities = function(){
             
             var liElement = document.createElement("li");
             // append a button with bootstraps classes inside each item
-            liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
-            // liElement.innerHTML = "<list-group row m-3' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
+            // liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
+            liElement.innerHTML = "<button type='button' class='col-3 col-md-3 col-xl-3 colThrew' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
             
             // append the item into its container
             ulElement.appendChild(liElement);
             }
 
-            containerHistoricCities.appendChild(ulElement); 
+            citySearchContainer.appendChild(ulElement); 
         }
 };
+//listener or call function when is clicked on button on each city history using Jquery
+// function event(){
+
+// $(document).on("click", ".col-3 col-md-3 col-xl-3 colThrew", function(event) {
+
+//     event.preventDefault();
+
+//     //getting the attribute that contain the name of the city
+//     var city = $(this).attr("attr");
+//     callApiFetch(city);
+// });
+
+// }
+
+
 
 // testing to see if I can add a card//
 
@@ -125,3 +143,57 @@ const item = {
 
 // var searchCities = document.querySelector(".cities-Searched");
 // var dataStore= json.parse(localStorage.getItem("cities")) ||{};
+
+function displayWeather(lat, lon) {
+    // var weatherContainerEl = document.querySelector("#weather-container");
+    // var citySearchEl = document.querySelector("#city-search-term");
+    // var weatherBox = document.querySelector("#weather-box");
+  
+    // weatherContainerEl.innerHTML = "";
+    // citySearchEl.innerHTML = "";
+    fiveDayForecastEl.innerHTML = "";
+  
+    // weatherBox.style.visibility = "visible";
+  
+    var lat = lat;
+    var lon = lon;
+    var apiUrl =
+      "http://api.openweathermap.org/data/2.5/forecast?lat=" +
+      lat +
+      "&lon=" +
+      lon +
+      "&units=imperial&appid=" +
+      ApiKey;
+  
+    fetch(apiUrl)
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (data) {
+            let weatherIcon= document.querySelector(".icons");
+            console.log(data);
+  
+            fiveDayForecast(data);
+  
+        temp = data;
+            // const minMaxTemps = getMinMaxTemp(data);
+            
+            document.querySelector("#name-city").innerHTML="City Name: "+data.city.name;
+            document.querySelector("#weather-container").innerHTML="Temp: "+data.list[0].main.temp+"℉";
+            document.querySelector("#humid-container").innerHTML="Humidity: "+data.list[0].main.humidity+"%";
+            document.querySelector("#w-speed").innerHTML="Wind: "+data.list[0].wind.speed+" MLP"
+            document.querySelector("#description").innerHTML="Weather Conditions: "+data.list[0].weather[0].description;
+            document.querySelector(".icons").innerHTML="Weather Icon: "+data.list[0].weather[0].icon
+  
+            let iconCode = data.list[0].weather[0].icon
+            let iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+            weatherIcon.setAttribute("src", iconUrl);
+            return;
+        });
+      } else {
+        alert("Error: " + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert("Unable to connect to OpenWeatherMap: " + error);
+    });
+}
