@@ -1,15 +1,19 @@
 // Function to find information from the console.log and placed in the Html//
-
+const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
 function searchWeather(){
 
     var city = document.querySelector(".textVal").value
 
-    var searchHistory =[];
+    
     searchHistory.push(city);
     console.log(searchHistory);
-    localStorage.setItem('search-history', JSON.stringify(searchHistory))
-    
+    localStorage.removeItem("searchHistory");
+
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory))
+
+    // get the city name from local storage - set to variable to pass into api call
+    //localStorage.getItem('search-history')
 
 //    var city was here I moved it to the top to test///
     var ApiKey = "7bdab0cf3daa341b1d431ecfe8584de8"
@@ -56,31 +60,37 @@ loadCity();
 
 
 var displayCities = function(cities){
-    var dataStore = JSON.parse(localStorage.getItem('search-history')) || [];
-    console.log(dataStore)
+    var dataStore = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    // console.log(dataStore) ****this repeats again
 
     let citySearchContainer= document.querySelector("#city-search");
-//  citySearchContainer.innerHTML=storedHistory
+    // console.log("#city-search")
+
 
 
     // cleaningElement(containerHistoricCities);
 
-    if(dataStore){
+    if(searchHistory){
         // creating a unordered list to store the info
         var ulElement = document.createElement("ul");
+        ulElement.classList.add("saveCity")
         ulElement.classList.add("list-unstyled");
         ulElement.classList.add("w-100");
-        
+        citySearchContainer.innerHTML = "";
         //for loop to iterate through out the localStore
-        for(var i = 0; i < dataStore.length; i++){
+        for(var i = 0; i < searchHistory.length; i++)
+        
+        {
             
             var liElement = document.createElement("li");
             // append a button with bootstraps classes inside each item
             // liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
-            liElement.innerHTML = "<button type='button' .class='col-3 col-md-3 col-xl-3 colThrew' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
+            liElement.innerHTML = "<button type='button' .class='col-3 col-md-3 col-xl-3 colThrew' onclick='searchWeather(this)' attr='"+searchHistory[i]+"'>" + searchHistory[i] + "</button>";
+            
             
             // append the item into its container
             ulElement.appendChild(liElement);
+            
             }
 
             citySearchContainer.appendChild(ulElement); 
@@ -165,92 +175,54 @@ const item = {
 };
 
 
+// .fuction to dispaly history 
+// function displayHistory() {
+//     const searchHistoryBox = document.querySelector("searchHistory");
+//     searchHistoryBox.innerHTML = "";
+//     for (var i = 0; i < searchHistory.length; i++) {
+//       const savedCity = document.createElement("a");
+//             savedCity.classList =
+//         "list-item flex-row justify-space-between align-center saved-city";
+//       savedCity.setAttribute =
+//         ("href", "./index.html?city-name=" + searchHistory[i]);
+//       savedCity.textContent = searchHistory[i];
 
 
+//       (function (city) {
+//         savedCity.addEventListener("click", function () {
+//           cityLookup(city);
+//         });
+//       })(searchHistory[i]);
+//       searchHistoryBox.appendChild(savedCity);
+//     }
+//   }
 
-// console.log(item);
-
-//   const key = 'cartItem1';
-//   localStorage.setItem(key, JSON.stringify(item));
-
-//   const cartList = document.querySelector('.cart-list');
-
-// const itemString = localStorage.getItem(key);
-// const itemObj = JSON.parse(itemString);
-
-// const cartItem = document.createElement('div');
-// cartItem.classList.add('cart-item');
-// cartItem.innerHTML = `
-//   <h3>${itemObj.name}</h3>
-//   <p>Price: $${itemObj.price}</p>
-//   <p>Quantity: ${itemObj.quantity}</p>
-// `;
-
-// cartList.appendChild(cartItem);
-
-// const itemString = localStorage.getItem(key);
-// const itemObj = JSON.parse(itemString);
-
-// // Update the quantity
-// itemObj.quantity += 1;
-
-// localStorage.setItem(key, JSON.stringify(itemObj));
-
-
-
-// var searchCities = document.querySelector(".cities-Searched");
-// var dataStore= json.parse(localStorage.getItem("cities")) ||{};
-
-function displayWeather(lat, lon) {
-    // var weatherContainerEl = document.querySelector("#weather-container");
-    // var citySearchEl = document.querySelector("#city-search-term");
-    // var weatherBox = document.querySelector("#weather-box");
-  
-    // weatherContainerEl.innerHTML = "";
-    // citySearchEl.innerHTML = "";
-    fiveDayForecastEl.innerHTML = "";
-  
-    // weatherBox.style.visibility = "visible";
-  
-    var lat = lat;
-    var lon = lon;
-    var apiUrl =
-      "http://api.openweathermap.org/data/2.5/forecast?lat=" +
-      lat +
-      "&lon=" +
-      lon +
-      "&units=imperial&appid=" +
-      ApiKey;
-  
-    fetch(apiUrl)
-      .then(function (response) {
-        if (response.ok) {
-          response.json().then(function (data) {
+function searchWeather(item){
+    console.log(item.getAttribute('attr'));
+    var city =item.getAttribute('attr');
+   
+        var ApiKey = "7bdab0cf3daa341b1d431ecfe8584de8"
+        fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+ApiKey+"&units=imperial")
+        // fetch("https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={Apikey}")
+        .then(res=>res.json())
+        .then(data=>{
             let weatherIcon= document.querySelector(".icons");
-            console.log(data);
-  
-            fiveDayForecast(data);
-  
-        temp = data;
-            // const minMaxTemps = getMinMaxTemp(data);
+            console.log(data)
+    
+            document.querySelector(".box-bodyToday").innerHTML="Wind Speed: "+data.wind.speed+"MPH";
+            document.querySelector(".box-bodyTemp").innerHTML="Temp: "+data.main.temp+"℉";
+            document.querySelector(".box-maxTemp").innerHTML="Max Temp: "+data.main.temp_max+"℉";
+            document.querySelector(".box-minTemp").innerHTML="Min Temp: "+data.main.temp_min+"℉";
+            document.querySelector(".box-Humidity").innerHTML="Humidity: "+data.main.humidity+"%";
+            document.querySelector(".boxCityName").innerHTML="City name: "+data.name;
+            document.querySelector(".icons").innerHTML="Icon: "+data.weather[0].icon;
             
-            document.querySelector("#name-city").innerHTML="City Name: "+data.city.name;
-            document.querySelector("#weather-container").innerHTML="Temp: "+data.list[0].main.temp+"℉";
-            document.querySelector("#humid-container").innerHTML="Humidity: "+data.list[0].main.humidity+"%";
-            document.querySelector("#w-speed").innerHTML="Wind: "+data.list[0].wind.speed+" MLP"
-            document.querySelector("#description").innerHTML="Weather Conditions: "+data.list[0].weather[0].description;
-            document.querySelector(".icons").innerHTML="Weather Icon: "+data.list[0].weather[0].icon
-  
-            let iconCode = data.list[0].weather[0].icon
-            let iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
-            weatherIcon.setAttribute("src", iconUrl);
-            return;
-        });
-      } else {
-        alert("Error: " + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert("Unable to connect to OpenWeatherMap: " + error);
-    });
+            let iconCode = data.weather[0].icon;
+      let iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+      weatherIcon.setAttribute("src", iconUrl);
+    
+        })
+        displayCities();
+
 }
+displayCities();
