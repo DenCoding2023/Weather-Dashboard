@@ -43,7 +43,7 @@ document.querySelector("#button-addon2").addEventListener("click", searchWeather
 
 var myValue = localStorage.getItem("city");
 localStorage.setItem(".city", myValue);
-
+console.log(myValue)
 
 
 function start(){
@@ -55,7 +55,7 @@ loadCity();
 //Array of Objects for localStores data
 
 
-var displayCities = function(){
+var displayCities = function(cities){
     var dataStore = JSON.parse(localStorage.getItem('search-history')) || [];
     console.log(dataStore)
 
@@ -90,18 +90,68 @@ var displayCities = function(){
 
 // listener or call function when is clicked on button on each city history using Jquery
 
-function event(){
 
-$(document).on("click", ".col-3 col-md-3 col-xl-3 colThrew", function(event) {
+// $(document).on("click", '.col-3 col-md-3 col-xl-3 colThrew', function(event) {
 
-    event.preventDefault();
+//     event.preventDefault();
 
     //getting the attribute that contain the name of the city
-    var city = $(this).attr("attr");
-    callApiFetch(city);
-});
+//     var city = $(this).attr("attr");
+//     callApiFetch(city);
+// });
 
+// Store the city in localStore
+var saveCity = function(city){
+
+    var flag = false
+    if(dataStore){
+        for(var i = 0; i < dataStore.length; i++){
+            if(dataStore[i] === city){
+                flag = true;
+            }
+        }
+        if(flag){
+            displayAlertMessage("The City: "+city+" already exists")
+            //return
+        }
+    }
+    if(!flag){
+        dataStore.push(city);
+        localStorage.setItem("cities",JSON.stringify(dataStore));
+    }
+    
+    loadCity();
 }
+var searchForDate9AM = function (str) {
+    var hour = str.split(" ")[1].split(":")[0];
+    var flag = false;
+    
+    if(hour === "09"){
+        flag = true;
+    }        
+    
+    return flag;
+};
+
+
+
+
+
+
+
+
+
+
+
+// Creating a variable to clear the innerhtml of the main area top right//
+
+var clearElement = function(element){
+  element.innerHTML = "";
+};
+
+
+
+
 
 
 
