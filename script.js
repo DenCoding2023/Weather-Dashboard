@@ -77,7 +77,7 @@ var displayCities = function(){
             var liElement = document.createElement("li");
             // append a button with bootstraps classes inside each item
             // liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
-            liElement.innerHTML = "<button type='button' class='col-3 col-md-3 col-xl-3 colThrew' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
+            liElement.innerHTML = "<button type='button' .class='col-3 col-md-3 col-xl-3 colThrew' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
             
             // append the item into its container
             ulElement.appendChild(liElement);
@@ -86,19 +86,22 @@ var displayCities = function(){
             citySearchContainer.appendChild(ulElement); 
         }
 };
-//listener or call function when is clicked on button on each city history using Jquery
-// function event(){
 
-// $(document).on("click", ".col-3 col-md-3 col-xl-3 colThrew", function(event) {
 
-//     event.preventDefault();
+// listener or call function when is clicked on button on each city history using Jquery
 
-//     //getting the attribute that contain the name of the city
-//     var city = $(this).attr("attr");
-//     callApiFetch(city);
-// });
+function event(){
 
-// }
+$(document).on("click", ".col-3 col-md-3 col-xl-3 colThrew", function(event) {
+
+    event.preventDefault();
+
+    //getting the attribute that contain the name of the city
+    var city = $(this).attr("attr");
+    callApiFetch(city);
+});
+
+}
 
 
 
@@ -110,6 +113,10 @@ const item = {
     quantity: 1
 
 };
+
+
+
+
 
 // console.log(item);
 
