@@ -238,40 +238,65 @@ function fiveDayforcast(lat, lon){
    
         var ApiKey = "7bdab0cf3daa341b1d431ecfe8584de8"
         // fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+ApiKey+"&units=imperial")
-        fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+ApiKey+"")
+        fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+ApiKey+"&units=imperial")
         .then(res=>res.json())
         .then(data=>{
             let weatherIcon= document.querySelector(".icons");
             console.log(data)
-var forecastContainer = document.querySelector("#forecast-container");    
-            data.list.forEach(element => {
-      console.log(element);
-                var liElement = document.createElement("div");
-                let maxTemp = document.createTextNode("Max Temp: "+element.main.temp_max+"℉");
-                var windSpeed= document.createTextNode("Wind Speed:"+element.wind.speed);
-                
-                
-            
-                // append a button with bootstraps classes inside each item
-                // liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
-                liElement.innerHTML = "date: "+element.dt_txt+ "<br/>Temp:"+ element.main.temp+"℉"+", Max Temp:"+element.main.temp_max+"";
+var forecastContainer = document.querySelector("#forecast-container");  
+// var element=data.length 
+        for(let i = 0; i < data.list.length; i+=8){
+        var element=data.list[i]
+        console.log("here")
+        
+        var liElement = document.createElement("div");
+        liElement.innerHTML = "Icon: "+element.weather[0].icon+"<br/>Date: "+element.dt_txt+ "<br/>Temp:"+ element.main.temp+"℉"+"<br/> Max Temp:"+element.main.temp_max+ 
+                "<br/>Humidity:"+element.main.humidity+"%";
                 liElement.className= "fc";
-                // append the item into its container
-                forecastContainer.appendChild(liElement);
-                forecastContainer.appendChild(maxTemp);
-                forecastContainer.appendChild(windSpeed);
-
-                let containerDiv =document.querySelector("#forecast-container")
                 
-                 // Method to convert Kelvin to Fahrenheit
+                forecastContainer.appendChild(liElement);
+                let containerDiv =document.querySelector("#forecast-container")
+
+                let iconCode = element.weather[0].icon;
+                let iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+                var iconImg = document.createElement("img");
+                
+                iconImg.setAttribute("src", iconUrl);
+                forecastContainer.appendChild(iconImg);
+        }
+    // console.log(data.list)
+
+    //         data.list.forEach(element => {
+    // //   console.log(element);
+    //             var liElement = document.createElement("div");
+    //             // let maxTemp = document.createTextNode("Max Temp: "+element.main.temp_max+"℉");
+    //             // var windSpeed= document.createTextNode("Wind Speed:"+element.wind.speed);
+            
+            
+    //             // append a button with bootstraps classes inside each item
+    //             // liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
+    //             liElement.innerHTML = "Icon: "+element.weather[0].icon+"<br/>Date: "+element.dt_txt+ "<br/>Temp:"+ element.main.temp+"℉"+"<br/> Max Temp:"+element.main.temp_max+ 
+    //             "<br/>Humidity:"+element.main.humidity+"%";
+    //             liElement.className= "fc";
+    //             // append the item into its container
+    //             forecastContainer.appendChild(liElement);
+    //             // forecastContainer.appendChild(maxTemp);
+    //             // forecastContainer.appendChild(windSpeed);
+
+    //             let containerDiv =document.querySelector("#forecast-container")
+
+    //             // let iconCode = element.list[0].weather[0].icon;
+    //             // let iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+    //             // weatherIcon.setAttribute("src", iconUrl);
+                
+    //              // Method to convert Kelvin to Fahrenheit
          
 
-        console.log(element)
+    //     // console.log(element)
     });
     
     
-        })
+        }
 
         displayCities();
 
-}

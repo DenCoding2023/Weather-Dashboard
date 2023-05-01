@@ -66,6 +66,8 @@ font-weight: bold;
   }
 
   .fc{
-background-color: rgb(122, 18, 8);
-display:inline-block;
+    background-color: rgb(38, 124, 84);
+    display:inline-block;
+    height: 140px;
+    width: 150px;
   }
