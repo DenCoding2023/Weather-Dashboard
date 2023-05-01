@@ -64,3 +64,8 @@ font-weight: bold;
     border-end-end-radius: 10px;
     width: ;
   }
+
+  .fc{
+background-color: rgb(122, 18, 8);
+display:inline-block;
+  }

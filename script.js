@@ -208,7 +208,12 @@ function searchWeather(item){
         .then(data=>{
             let weatherIcon= document.querySelector(".icons");
             console.log(data)
+    console.log(data.coord.lat);
+    console.log(data.coord.lon);
+    fiveDayforcast(data.coord.lat, data.coord.lon);
     
+
+
             document.querySelector(".box-bodyToday").innerHTML="Wind Speed: "+data.wind.speed+"MPH";
             document.querySelector(".box-bodyTemp").innerHTML="Temp: "+data.main.temp+"℉";
             document.querySelector(".box-maxTemp").innerHTML="Max Temp: "+data.main.temp_max+"℉";
@@ -226,3 +231,36 @@ function searchWeather(item){
 
 }
 displayCities();
+// Five day forcast
+
+function fiveDayforcast(lat, lon){
+    
+   
+        var ApiKey = "7bdab0cf3daa341b1d431ecfe8584de8"
+        // fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+ApiKey+"&units=imperial")
+        fetch("https://api.openweathermap.org/data/2.5/forecast?lat="+lat+"&lon="+lon+"&appid="+ApiKey+"")
+        .then(res=>res.json())
+        .then(data=>{
+            let weatherIcon= document.querySelector(".icons");
+            console.log(data)
+var forecastContainer = document.querySelector("#forecast-container");    
+            data.list.forEach(element => {
+      console.log(element);
+                var liElement = document.createElement("div");
+                // append a button with bootstraps classes inside each item
+                // liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
+                liElement.innerHTML = "date: "+element.dt_txt+ "<br/>Temp:"+ element.main.temp+", Max Temp:"+element.main.temp_max+"";
+                liElement.className= "fc";
+                // append the item into its container
+                forecastContainer.appendChild(liElement);
+                
+
+        console.log(element)
+    });
+    
+    
+        })
+
+        displayCities();
+
+}
