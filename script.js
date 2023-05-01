@@ -247,13 +247,24 @@ var forecastContainer = document.querySelector("#forecast-container");
             data.list.forEach(element => {
       console.log(element);
                 var liElement = document.createElement("div");
+                let maxTemp = document.createTextNode("Max Temp: "+element.main.temp_max+"℉");
+                var windSpeed= document.createTextNode("Wind Speed:"+element.wind.speed);
+                
+                
+            
                 // append a button with bootstraps classes inside each item
                 // liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
-                liElement.innerHTML = "date: "+element.dt_txt+ "<br/>Temp:"+ element.main.temp+", Max Temp:"+element.main.temp_max+"";
+                liElement.innerHTML = "date: "+element.dt_txt+ "<br/>Temp:"+ element.main.temp+"℉"+", Max Temp:"+element.main.temp_max+"";
                 liElement.className= "fc";
                 // append the item into its container
                 forecastContainer.appendChild(liElement);
+                forecastContainer.appendChild(maxTemp);
+                forecastContainer.appendChild(windSpeed);
+
+                let containerDiv =document.querySelector("#forecast-container")
                 
+                 // Method to convert Kelvin to Fahrenheit
+         
 
         console.log(element)
     });
