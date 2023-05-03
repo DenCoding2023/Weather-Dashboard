@@ -66,10 +66,10 @@ font-weight: bold;
   }
 
   .fc{
-    background-color: rgb(38, 124, 84);
+    /* background-color: rgb(139, 192, 167); */
     display:inline-block;
-    height: 140px;
-    width: 150px;
+    height: 209px;
+    width: 159px;
   }
 
 .img-w{

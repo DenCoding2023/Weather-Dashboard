@@ -257,7 +257,7 @@ function fiveDayforcast(lat, lon) {
                 var parentElement = document.createElement("div");
                 parentElement.setAttribute("class", "fc");
                 var divElement = document.createElement("div");
-                divElement.innerHTML = "Icon: " + element.weather[0].icon + "<br/>Date: " + element.dt_txt + "<br/>Temp:" + element.main.temp + "℉" + "<br/> Max Temp:" + element.main.temp_max +
+                divElement.innerHTML = "Weather: " + element.weather[0].icon + "<br/>Date: " + element.dt_txt + "<br/>Temp:" + element.main.temp + "℉" + "<br/> Max Temp:" + element.main.temp_max +
                     "<br/>Humidity:" + element.main.humidity + "%";
                 divElement.className = "fc";
 
@@ -265,7 +265,7 @@ function fiveDayforcast(lat, lon) {
                 // let containerDiv =document.querySelector("#forecast-container")
 
                 let iconCode = element.weather[0].icon;
-                let iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
+                let iconUrl = "http://openweathermap.org/img/wn/"+iconCode +".png";
                 var iconImg = document.createElement("img");
                 iconImg.setAttribute("class", "img-w");
                 iconImg.setAttribute("src", iconUrl);
