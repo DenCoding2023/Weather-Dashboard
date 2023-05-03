@@ -1,5 +1,5 @@
 body{
-background-color: beige;
+background-color: rgb(223, 223, 183);
 }
 
 h1{
@@ -27,14 +27,17 @@ font-weight: bold;
     font-size: 20px;
   } 
 
-  button-
+  button{
+    margin: 5px;
+    height: 30px;
+  }
 
   /* .row-1 {
     float: left;
     width: 50%;
     box-sizing: border-box;
   }
-   */
+   */ */
 
   .fiveDayForcast{
     background-color: #7c948f;
