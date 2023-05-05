@@ -1,3 +1,5 @@
+
+
 const searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
 function searchWeatherAndLocalStorage() {
@@ -26,6 +28,8 @@ function searchWeatherAndLocalStorage() {
             console.log(data.coord.lon);
             fiveDayforcast(data.coord.lat, data.coord.lon);
 
+            
+
             document.querySelector(".box-bodyToday").innerHTML = "Wind Speed: " + data.wind.speed + "MPH";
             document.querySelector(".box-bodyTemp").innerHTML = "Temp: " + data.main.temp + "℉";
             document.querySelector(".box-maxTemp").innerHTML = "Max Temp: " + data.main.temp_max + "℉";
@@ -40,6 +44,7 @@ function searchWeatherAndLocalStorage() {
 
         })
     displayCities();
+    
 }
 
 
@@ -111,37 +116,37 @@ var displayCities = function (cities) {
 // });
 
 // Store the city in localStore
-var saveCity = function (city) {
+// var saveCity = function (city) {
 
-    var flag = false
-    if (dataStore) {
-        for (var i = 0; i < dataStore.length; i++) {
-            if (dataStore[i] === city) {
-                flag = true;
-            }
-        }
-        if (flag) {
-            displayAlertMessage("The City: " + city + " already exists")
-            //return
-        }
-    }
-    if (!flag) {
-        dataStore.push(city);
-        localStorage.setItem("cities", JSON.stringify(dataStore));
-    }
+//     var flag = false
+//     if (dataStore) {
+//         for (var i = 0; i < dataStore.length; i++) {
+//             if (dataStore[i] === city) {
+//                 flag = true;
+//             }
+//         }
+//         if (flag) {
+//             displayAlertMessage("The City: " + city + " already exists")
+//             //return
+//         }
+//     }
+//     if (!flag) {
+//         dataStore.push(city);
+//         localStorage.setItem("cities", JSON.stringify(dataStore));
+//     }
 
-    loadCity();
-}
-var searchForDate9AM = function (str) {
-    var hour = str.split(" ")[1].split(":")[0];
-    var flag = false;
+//     loadCity();
+// }
+// var searchForDate9AM = function (str) {
+//     var hour = str.split(" ")[1].split(":")[0];
+//     var flag = false;
 
-    if (hour === "09") {
-        flag = true;
-    }
+//     if (hour === "09") {
+//         flag = true;
+//     }
 
-    return flag;
-};
+//     return flag;
+// };
 
 
 
@@ -227,6 +232,7 @@ function searchWeather(item) {
             let iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
             weatherIcon.setAttribute("src", iconUrl);
 
+            
         })
     displayCities();
 
@@ -262,8 +268,7 @@ function fiveDayforcast(lat, lon) {
                
                 divElement.className = "fc";
 
-
-             
+                            
                 let iconCode = element.weather[0].icon;
                 let iconUrl = "http://openweathermap.org/img/wn/"+iconCode +".png";
                 var iconImg = document.createElement("img");
@@ -273,42 +278,21 @@ function fiveDayforcast(lat, lon) {
                 parentElement.appendChild(divElement);
                 forecastContainer.appendChild(parentElement);
        
-              
-            }
-
-            
-            // console.log(data.list)
-
-            //         data.list.forEach(element => {
-            // //   console.log(element);
-            //             var liElement = document.createElement("div");
-            //             // let maxTemp = document.createTextNode("Max Temp: "+element.main.temp_max+"℉");
-            //             // var windSpeed= document.createTextNode("Wind Speed:"+element.wind.speed);
-
-
-            //             // append a button with bootstraps classes inside each item
-            //             // liElement.innerHTML = "<button type='button' class='list-group-item list-group-item-action' attr='"+dataStore[i]+"'>" + dataStore[i] + "</button>";
-            //             liElement.innerHTML = "Icon: "+element.weather[0].icon+"<br/>Date: "+element.dt_txt+ "<br/>Temp:"+ element.main.temp+"℉"+"<br/> Max Temp:"+element.main.temp_max+ 
-            //             "<br/>Humidity:"+element.main.humidity+"%";
-            //             liElement.className= "fc";
-            //             // append the item into its container
-            //             forecastContainer.appendChild(liElement);
-            //             // forecastContainer.appendChild(maxTemp);
-            //             // forecastContainer.appendChild(windSpeed);
-
-            //             let containerDiv =document.querySelector("#forecast-container")
-
-            //             // let iconCode = element.list[0].weather[0].icon;
-            //             // let iconUrl = "http://openweathermap.org/img/wn/" + iconCode + ".png";
-            //             // weatherIcon.setAttribute("src", iconUrl);
-
-            //              // Method to convert Kelvin to Fahrenheit
-
-
-            //     // console.log(element)
+                
+          }
+                
         });
 
-
+        
 }
 
+var formatDate = function(strDate){
+
+    var newDate = strDate.split(" ")[0].split("-");
+
+    return (newDate[1]+"/"+newDate[2]+"/"+newDate[0]);
+};
+
+
 displayCities();
+
