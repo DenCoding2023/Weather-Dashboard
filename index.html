@@ -10,25 +10,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
     rel="stylesheet"> 
     <link rel="stylesheet" href="./assets/style.css">
+    
+
   </head>
 
   <body>
 
-    <!-- <style>
-      .row-1{
-        background-color: bisque;
-        height: 200px;
-        width: 35%;
-        float: left;
-        box-sizing: border-box;
-      }
-
-      .row-2{
-        background-color: rgb(174, 174, 204);
-        height: 200px;
-      }
-    </style> -->
-    
+   
     <main>
         <h1>Personal Weather Dashboard</h1>  
 
@@ -41,7 +29,7 @@
             <h2> Search for a City in the USA:</h2>
                 <input type="text" class="control textVal" placeholder="Type a city...."></input>
         
-        <button class="btn btn-serach btnPar" type="button" id="button-addon2"> click <i class="fas fa-search"></i></button>
+        <button class="btn btn-serach btnPar" type="button" id="button-addon2"> Click <i class="fas fa-search"></i></button>
              
 
         </div>
@@ -52,8 +40,8 @@
       <div class="col-9 col-md-9 col-xl-9 colTwo">
           <!-- <div class="main box" style ="max-width: 425px;"> -->
           <h2 class="box-header boxCityName">City name:</h2>
-              <h3 class="box-header boxTodayDate">Date:</h3> 
-                <img class="icons">weather Icon</img>
+              <h3 class="box-header boxTodayDate">Date:<p id="2a"></p></h3> 
+                <img class="icons"></img>
                 <div class = "box-body box-bodyTemp">Temp:</div>
                 <div class = "box-body box-maxTemp">Max Temp:</div>
                 <div class = "box-body box-minTemp">Min Temp:</div>
@@ -79,9 +67,13 @@
                 
 
     </main>
-	<script src="./script.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" 
-  integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> -->
+  <script
+  src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+  integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+  crossorigin="anonymous"
+></script>
+  	<script src="./script.js"></script>
+
   </body>
 </html>

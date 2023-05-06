@@ -10,25 +10,43 @@ h1{
 
 h2{
     margin-top: 10px;
-font-size: revert;
+/* font-size: revert; */
 font-style: italic;
 font-weight: bold;
 }
 
 /* Button to click on color */
 .btnPar{
-    background-color: #285172; 
+    /* background-color: #285172; 
     border: none;
     color: white;
     /* padding: 15px 32px; */
     text-align: center;
-    text-decoration: none;
+    /* text-decoration: none; */
     display: inline-block;
     width: 175px;
     height: 38px;
     font-size: 20px;
+    margin-top: 6px; 
+    display: inline-block;
+  padding: 1px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  /* text-align: center; */
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #376639;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
   } 
 
+  .btnPar:hover {background-color: #3e8e41}
+
+  #text{
+    color: red;
+  }
   
   /* .row-1 {
     float: left;
@@ -40,6 +58,8 @@ font-weight: bold;
 /* City formation main page text size */
    .box-body{
     font-size: x-large;
+    color: #0d0c0c;
+    padding-bottom: 6px;
    }
 
   .fiveDayForcast{
@@ -50,13 +70,15 @@ font-weight: bold;
 /* Colos for the seacrh city sectoin  */
   .colOne{
     background-color: #90977dc7; 
-    border: 3px solid #0d0c0c
-      }
+    border: 3px solid #0d0c0c;
+    border-radius: 10px;
+  }
 
 /* Colors for the mmain day weather display */
   .colTwo{
     border: 3px solid #0d0c0c;
     background-color:#7e92a1;
+    border-radius: 10px;
 
   }
 
@@ -76,10 +98,11 @@ font-weight: bold;
   .colFour{
     background-color: #90977dc7;
     border: 3px solid #0d0c0c;
+    border-radius: 10px;
   }
 /* Section where the cities will display */
   .colThrew{
-    border-end-end-radius: 10px;
+    border-radius: 10px;
     
   }
 
@@ -89,6 +112,8 @@ font-weight: bold;
     height: 266px;
     width: 170px;
     font-size: large;
+    color: black;
+    font-weight: 600;
     /* background-color:#90977dc7; */
    
   }
@@ -99,12 +124,36 @@ font-weight: bold;
   }
 
 .icons{
-  margin-right: 9px;
-    height: 90px;
-    width: 99px;
+  margin-left: 202px;
+  height: 99px;
+  width: 130px;
+  margin-top: -75px;
 }
 
-/* .input.control.texVAl{
-  height: 29px;
-    width: 116px;
-} */
+p{
+  margin-top: -32px;
+  margin-left: 70px;
+}
+
+.list-unstiled{
+  padding: 1px;
+  margin: 1px;
+  width: 119px;
+  
+}
+
+/* controling the side buttons of the search */
+li button{
+  width: 125px; 
+  font-size: large;
+  border-radius: 12px;
+  color: maroon;
+}
+
+/* Control the new searhc button */
+.control.textVal{
+  border-radius: 12px;
+  text-align: center;
+  width: 173px;
+  height: 36px
+}
