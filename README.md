@@ -25,7 +25,7 @@ MIT license through the use of GITHUB.
 ## Aplication site:
 https://dencoding2023.github.io/Weather-Dashboard/
 ## Class Repository:
-https://github.com/DenCoding2023/Work-day-Scheduler.git
+https://github.com/DenCoding2023/Weather-Dashboard.git
 
 ## Screen Shot of the Site
 ![Alt text](assets/images/main%20page.png)
